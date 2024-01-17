@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('background.png') center/cover no-repeat;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the alpha value for transparency */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-input {
+            margin-bottom: 15px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .login-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form class="login-form" action="http://127.0.0.1:5000/login" method="post">
+            <input type="email" name="email" class="form-input" placeholder="Email" required>
+            <input type="password" name="password" class="form-input" placeholder="Password" required>
+            <button type="submit" class="login-button" onclick=validateForm()>Login</button>
+        </form>
+    </div>
+    <script>
+      function validateForm() {
+          // Clear previous error messages
+          document.getElementById('email-error').innerHTML = '';
+          document.getElementById('password-error').innerHTML = '';
+
+          // Get form inputs
+          var email = document.forms["loginForm"]["email"].value;
+          var password = document.forms["loginForm"]["password"].value;
+
+          // Email validation
+          var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+              document.getElementById('email-error').innerHTML = 'Invalid email address';
+              return false;
+          }
+
+          // Password validation (you can add more conditions as needed)
+          if (password.length < 6) {
+              document.getElementById('password-error').innerHTML = 'Password must be at least 6 characters';
+              return false;
+          }
+
+          // Form is valid
+          return true;
+      }
+  </script>
+</body>
+</html>
